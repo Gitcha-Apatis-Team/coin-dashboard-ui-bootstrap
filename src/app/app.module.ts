@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TickerModule } from './ticker/ticker.module';
 import { CoinOneApiService } from './share/coin-one-api.service';
+import { ChartModule } from './chart/chart.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,7 +16,8 @@ import { CoinOneApiService } from './share/coin-one-api.service';
     NgbModule.forRoot(),
     AppMainModule,
     AppRoutingModule,
-    TickerModule
+    TickerModule,
+    ChartModule
   ],
   providers: [CoinOneApiService],
   bootstrap: [AppComponent]
