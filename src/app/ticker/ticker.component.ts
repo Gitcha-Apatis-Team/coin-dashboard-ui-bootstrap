@@ -8,16 +8,16 @@ import { Tickers, currency, Ticker } from './ticker.model';
   styleUrls: ['./ticker.component.scss']
 })
 export class TickerComponent implements OnInit {
-  public tickers: Array<Ticker> = [];
 
-  constructor(private coinOneApiService: CoinOneApiService) {}
+  constructor() { }
 
   ngOnInit() {
-    this.coinOneApiService.getTickers().subscribe(data => {
-      for (let i = 0; i < currency.length; i++) {
-        this.tickers.push(data[currency[i]]);
-      }
-      console.log(this.tickers);
-    });
+
+
+
   }
+
+
+
+
 }

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Tickers } from '../ticker/ticker.model';
 import { Observable } from 'rxjs/Observable';
+import { retry , timeInterval } from 'rxjs/operators';
+
+
 
 @Injectable()
 export class CoinOneApiService {
@@ -13,6 +16,7 @@ export class CoinOneApiService {
    * getTickers
    */
   public getTickers(): Observable<Tickers> {
-    return this.http.get<Tickers>(this.API_URL);
+    return this.http
+    .get<Tickers>(this.API_URL) 
   }
 }

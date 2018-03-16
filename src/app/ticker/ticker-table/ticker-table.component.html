@@ -1,0 +1,48 @@
+<table class="table table-dark table-responsive">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">currency</th>
+      <th scope="col">first</th>
+      <th scope="col">high</th>
+      <th scope="col">last(현재가)</th>
+      <th scope="col">low</th>
+      <th scope="col">volume(거래량)</th>
+      <th scope="col">yesterday_first</th>
+      <th scope="col">yesterday_high</th>
+      <th scope="col">yesterday_last(어제 최종가격)</th>
+      <th scope="col">yesterday_low(어제 최저가)</th>
+      <th scope="col">yesterday_volume(어제 거래량)</th>
+      <th scope="col">전일 대비 (가격)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticker of tickers; let idx = index">
+      <th scope="row">{{idx+1}}</th>
+      <td>{{ticker.currency }}</td>
+      <td>{{ticker.first | number}}</td>
+      <td>{{ticker.high | number}}</td>
+      <td>{{ticker.last | number}}</td>
+      <td>{{ticker.low | number}}</td>
+      <td>{{ticker.volume | number}}</td>
+      <td>{{ticker.yesterday_first | number}}</td>
+      <td>{{ticker.yesterday_high | number}}</td>
+      <td>{{ticker.yesterday_last | number}}</td>
+      <td>{{ticker.yesterday_low | number}}</td>
+      <td>{{ticker.yesterday_volume | number}}</td>
+      <div *ngIf="(ticker.last - ticker.yesterday_last)/ticker.yesterday_last  > 0;then content else content2" ></div>
+      <ng-template  #content >
+        <td [style.background-color]="'red'" >
+          {{ (ticker.last - ticker.yesterday_last)/ticker.yesterday_last| percent:'1.0-2'}}
+        </td>
+      </ng-template>
+      <ng-template  #content2 >
+        <td [style.background-color]="'blue'" >
+          {{ (ticker.last - ticker.yesterday_last)/ticker.yesterday_last| percent:'1.0-2'}}
+        </td>
+      </ng-template>
+    </tr> 
+
+
+  </tbody>
+</table>
