@@ -1,0 +1,7 @@
+<input #searchInput 
+ class="form-control form-control-dark w-100" 
+ type="text" 
+ placeholder="Coin 영문명을 입력해주세요!" 
+ aria-label="Search"
+ (keyup)="searchKeyword$.next(searchInput.value)">
+ <p> 입력 데이터 확인 : {{curentSearchKeyword}}</p>

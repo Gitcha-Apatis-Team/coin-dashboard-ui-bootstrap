@@ -19,7 +19,7 @@
   <tbody>
     <tr *ngFor="let ticker of tickers; let idx = index">
       <th scope="row">{{idx+1}}</th>
-      <td>{{ticker.currency }}</td>
+      <td>{{ticker.currency | tickerCurrency }}</td>  
       <td>{{ticker.first | number}}</td>
       <td>{{ticker.high | number}}</td>
       <td>{{ticker.last | number}}</td>
