@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ticker, currency } from '../ticker.model';
 import { CoinOneApiService } from '../../share/coin-one-api.service';
 import { SearchFilterService } from '../search-filter.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ticker-table',
@@ -25,7 +26,10 @@ export class TickerTableComponent implements OnInit, OnDestroy {
   }
 
   getTickers() {
-    this.coinOneApiService.getTickers().subscribe(data => {
+    this.coinOneApiService
+    .getTickers()
+    .pipe(take(1))
+    .subscribe(data => {
       this.tickers = [];
 
       if (this.findCureeucy() !== -1) {
@@ -36,7 +40,7 @@ export class TickerTableComponent implements OnInit, OnDestroy {
         }
       }
 
-      // console.log(this.tickers);
+      console.log(this.tickers);
     });
   }
 

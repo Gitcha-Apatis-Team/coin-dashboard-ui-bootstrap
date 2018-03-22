@@ -39,6 +39,7 @@ export interface Ticker {
 export interface Tickers {
   result: string;
   errorCode: string;
+  timestamp: number;
 
   btc: Ticker;
   bch: Ticker;

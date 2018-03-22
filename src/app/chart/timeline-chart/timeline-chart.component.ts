@@ -1,60 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CoinOneApiService } from '../../share/coin-one-api.service';
+import * as shape from 'd3-shape';
+import { Subscription } from 'rxjs/Subscription';
+import { take } from 'rxjs/operators';
 
 export const single = [
   {
-    name: 'Germany',
+    name: 'BTC',
     value: 8940000
   },
   {
-    name: 'USA',
+    name: 'BTG',
     value: 5000000
   },
   {
-    name: 'France',
+    name: 'XRP',
     value: 7200000
   }
 ];
 
 export const multi = [
   {
-    name: 'Germany',
+    name: 'eth',
     series: [
-      {
-        name: '2010',
-        value: 7300000
-      },
-      {
-        name: '2011',
-        value: 8940000
-      }
-    ]
-  },
-
-  {
-    name: 'USA',
-    series: [
-      {
-        name: '2010',
-        value: 7870000
-      },
-      {
-        name: '2011',
-        value: 8270000
-      }
-    ]
-  },
-
-  {
-    name: 'France',
-    series: [
-      {
-        name: '2010',
-        value: 5000002
-      },
-      {
-        name: '2011',
-        value: 5800000
-      }
+     
     ]
   }
 ];
@@ -64,21 +33,27 @@ export const multi = [
   templateUrl: './timeline-chart.component.html',
   styleUrls: ['./timeline-chart.component.scss']
 })
-export class TimelineChartComponent implements OnInit {
+export class TimelineChartComponent implements OnInit, OnDestroy {
   single: any[];
   multi: any[];
 
-  view: any[] = [700, 400];
+  view: any[] = [1400, 500];
 
   // options
   showXAxis = true;
   showYAxis = true;
-  gradient = false;
+  gradient = true;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = '시간';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = '가격';
+  timeline = false;
+  curve = shape.curveCardinal;
+  xScaleMin = new Date();
+  yScaleMin = 1;
+  yScaleMax = 1;
+  intervalId;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -87,13 +62,42 @@ export class TimelineChartComponent implements OnInit {
   // line, area
   autoScale = true;
 
-  constructor() {
-    Object.assign(this, { single, multi });
+  constructor(private coinOneApiService: CoinOneApiService) {
+    // Object.assign(this, { single, multi }); 해당 객체로 객체 프로퍼티 COPY
+    this.single = single;
+    this.multi = multi;
+  }
+
+  ngOnInit() {
+    this.intervalId = setInterval(() => {
+      this.getTickers();
+    }, 2000);
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
   }
 
   onSelect(event) {
     console.log(event);
   }
 
-  ngOnInit() {}
+  getTickers(): Subscription {
+    return this.coinOneApiService
+      .getTickers()
+      .pipe(take(1))
+      .subscribe(dataSet => {
+        this.yScaleMin = dataSet['eth'].last * 0.99;
+        this.yScaleMax = dataSet['eth'].last * 1.01;
+        console.log(new Date(<number>dataSet.timestamp * 1000));
+
+        const data = {
+          name: new Date(<number>dataSet.timestamp * 1000),
+          value: dataSet['eth'].last
+        };
+
+        this.multi[0].series.push(data);
+        this.multi[0].series.slice(-10);
+        this.multi = [...this.multi];
+      });
+  }
 }
