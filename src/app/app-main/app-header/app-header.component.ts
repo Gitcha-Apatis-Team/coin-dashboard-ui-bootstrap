@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, InjectionToken } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(@Inject('APP_CONFIG') config) {
+    const { APP_URL, SERVER_URL } = config;
+    console.log(APP_URL);
+    console.log(SERVER_URL);
   }
 
+  ngOnInit() {}
 }

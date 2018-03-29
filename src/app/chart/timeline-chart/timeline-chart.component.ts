@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy , ChangeDetectorRef } from '@angular/core';
 import { CoinOneApiService } from '../../share/coin-one-api.service';
 import * as shape from 'd3-shape';
 import { Subscription } from 'rxjs/Subscription';
@@ -23,7 +23,6 @@ export const multi = [
   {
     name: 'eth',
     series: [
-     
     ]
   }
 ];
