@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TickerModule } from './ticker/ticker.module';
 import { CoinOneApiService } from './share/coin-one-api.service';
 import { ChartModule } from './chart/chart.module';
-import { CONFIG } from './app.config';
+import { APP_CONFIG } from './app.config';
 
 
 
@@ -32,7 +32,7 @@ import { CONFIG } from './app.config';
     CoinOneApiService,
     {
       provide: 'APP_CONFIG',
-      useValue: CONFIG
+      useValue: APP_CONFIG
     }
   ],
   bootstrap: [AppComponent]
