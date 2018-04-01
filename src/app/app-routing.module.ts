@@ -5,6 +5,7 @@ import { TickerComponent } from './ticker/ticker.component';
 import { TimelineChartComponent } from './chart/timeline-chart/timeline-chart.component';
 import { TimelieChart2Component } from './chart/timelie-chart2/timelie-chart2.component';
 import { ShapeComponent } from './shape/shape.component';
+import { CandleStickChartComponent } from './chart/candle-stick-chart/candle-stick-chart.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'ticker', component: TickerComponent },
   { path: 'ticker-chart', component: TimelineChartComponent },
   { path: 'ticker-chart2' , component : TimelieChart2Component},
-  { path: 'shape', component : ShapeComponent }
+  { path: 'shape', component : ShapeComponent },
+  { path: 'candleStickChart', component : CandleStickChartComponent }
 ];
 
 @NgModule({

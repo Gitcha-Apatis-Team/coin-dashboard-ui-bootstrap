@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">캔들 스틱 차트 그려보기</h1>
+  </div>
+</div>
+
+<div class="chart1">
+
+  <svg:svg [attr.width]="'1000'" [attr.height]="'500'">
+    <g [attr.transform]="'translate(5,0)'">
+        <g class="sticks">
+            <ng-container *ngFor="let lineRow of lineData" >
+              <rect [attr.x]="lineRow.x" 
+                    [attr.y]="lineRow.y" 
+                    [ngClass]="lineRow.class" 
+                    [attr.height]="lineRow.height" 
+                    [attr.width]="lineRow.width"></rect>
+            </ng-container>
+        </g>
+        <g class="candles">
+            <ng-container *ngFor="let candleRow of candleData" >
+                <rect [attr.x]="candleRow.x" 
+                      [attr.y]="candleRow.y" 
+                      [ngClass]="candleRow.class" 
+                      [attr.height]="candleRow.height" 
+                      [attr.width]="candleRow.width"></rect>
+              </ng-container>  
+        </g>
+    </g>
+
+  </svg:svg>
+
+
+</div>
