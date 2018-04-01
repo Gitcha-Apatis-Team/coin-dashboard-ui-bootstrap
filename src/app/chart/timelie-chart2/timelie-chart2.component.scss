@@ -1,0 +1,29 @@
+:host  body {
+  margin: auto;
+  width: 960px;
+}
+
+:host text {
+  font: 10px sans-serif;
+}
+
+:host .axis path,
+:host .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+:host .x.axis path {
+  display: none;
+}
+
+:host .line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+:host .line.above {
+  stroke: #f00;
+}

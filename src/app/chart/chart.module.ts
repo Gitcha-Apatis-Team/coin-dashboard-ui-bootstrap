@@ -5,10 +5,11 @@ import { TimelineChartComponent } from './timeline-chart/timeline-chart.componen
 import { RouterModule } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TimelieChart2Component } from './timelie-chart2/timelie-chart2.component';
+import { ShapeComponent } from '../shape/shape.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, NgxChartsModule],
-  declarations: [TimelineChartComponent, TimelieChart2Component],
+  declarations: [TimelineChartComponent, TimelieChart2Component , ShapeComponent],
   exports: [TimelineChartComponent]
 })
 export class ChartModule {}

@@ -1,0 +1,51 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">shape</h1>
+  </div>
+</div>
+
+<svg:svg [attr.width]="width" [attr.height]="height">
+  <g [attr.transform]="'translate(50,20)'">
+ 
+    <clipPath [attr.id]="'clip-above'" >
+      <rect   x="0"  y="0" rx="0" ry="0"  [attr.width]="width" [attr.height]="'30'"
+      ></rect>
+    </clipPath>
+    <clipPath [attr.id]="'clip-bottom'" >
+        <rect x="0"  y="30" rx="0" ry="0" [attr.width]="width" [attr.height]="30"
+        ></rect>
+    </clipPath>
+    <path 
+      [ngClass]="'top'" 
+      [attr.d] ="d"
+      [attr.stroke-width]="strokeWidth"
+      [attr.fill]="fill"
+      [attr.clip-path]="'url(#clip-above)'"
+      ></path>
+    <path 
+    [ngClass]="'bottom'"
+    [attr.d] ="d"
+    [attr.stroke-width]="strokeWidth"
+    [attr.fill]="fill"
+    [attr.clip-path]="'url(#clip-bottom)'"
+    ></path>
+
+    <path 
+    [ngClass]="'top'" 
+    [attr.d] ="ad"
+    [attr.stroke-width]="strokeWidth"
+    [attr.fill]="'#da343452'"
+    [attr.clip-path]="'url(#clip-above)'"
+    ></path>
+    
+    <path 
+    [ngClass]="'bottom'"
+    [attr.d] ="d"
+    [attr.stroke-width]="strokeWidth"
+    [attr.fill]="'#c7daea'"
+    [attr.clip-path]="'url(#clip-bottom)'"
+    ></path>
+
+
+</g>
+</svg:svg>

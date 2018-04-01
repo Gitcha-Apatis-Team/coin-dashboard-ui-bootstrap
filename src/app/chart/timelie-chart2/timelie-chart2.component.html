@@ -1,5 +1,33 @@
-<div  class="jumbotron">
-  <div  class="container">
+<div class="jumbotron">
+  <div class="container">
     <h1 class="display-3">코인 시세</h1>
   </div>
+</div>
+
+
+<div>
+
+  <svg:svg [attr.width]="width" [attr.hight]="hight" [attr.transform]="transform">
+    <!-- <svg:g [attr.transform]="transform"> -->
+
+      <svg:clipPath [attr.id]="'clip-above'">
+        <rect [attr.width]="width" [attr.height]="'231.70212765957444'"></rect>
+      </svg:clipPath>
+      <svg:clipPath [attr.id]="'clip-below'">
+        <rect [attr.width]="width" [attr.height]="'231.70212765957444'"></rect>
+      </svg:clipPath>
+      <svg:path 
+        [ngClass]="pathAbove" 
+        [attr.clip-path]="clipPathAbove"
+        [attr.d]="d"
+        >
+      </svg:path>
+      <svg:path 
+        [ngClass]="pathBelow"
+        [attr.clip-path]="clipPathBelow"
+        [attr.d]="d"
+        >
+      </svg:path>
+    <!-- </svg:g> -->
+  </svg:svg>
 </div>

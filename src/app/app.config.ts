@@ -8,3 +8,4 @@ export const APP_CONFIG = {
   APP_URL: environment.apiUrl,
   SERVER_URL: environment.serverUrl
 };
+
